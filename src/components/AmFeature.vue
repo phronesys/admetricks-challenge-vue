@@ -1,7 +1,6 @@
 <template>
   <div class="feature">
-    <!-- icon -->
-    <am-icon></am-icon>
+    <am-icon :name="iconName" class="w-8 h-8"></am-icon>
     <h4>
       <slot name="title"></slot>
     </h4>
@@ -12,20 +11,21 @@
 </template>
 
 <script setup lang="ts">
-import AmIcon from './AmIcon.vue';
-const props = defineProps({
-  iconName: {
-    type: String,
-    default: 'device'
-  }
-});
+import AmIcon from "./AmIcon.vue";
+const { iconName = "device" } = defineProps<{
+  iconName: string;
+}>();
+
 </script>
 
 <style lang="postcss">
 .feature {
-  @apply flex flex-col gap-2;
+  @apply flex flex-col gap-2 min-w-[260px];
   & > h4 {
-    @apply text-lg text-white;
+    @apply text-lg text-white font-semibold;
+  }
+  & > p {
+    @apply leading-5;
   }
 }
 </style>
