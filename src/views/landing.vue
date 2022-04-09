@@ -2,14 +2,17 @@
   <section id="landing">
     <Header></Header>
     <div class="devices">
-      <AmCardVue alternative class="w-[530px] h-[405px]"></AmCardVue>
-      <AmCardVue alternative class="w-[260px] h-[486px]"></AmCardVue>
+      <am-card alternative class="w-[530px] h-[405px]"></am-card>
+      <am-card alternative class="w-[260px] h-[486px]"></am-card>
     </div>
+
+    <am-icon></am-icon>
   </section>
 </template>
 
 <script setup lang="ts">
-import AmCardVue from "../components/AmCard.vue";
+import AmCard from "../components/AmCard.vue";
+import AmIcon from "../components/AmIcon.vue";
 import Header from "../layouts/landing/Header.vue";
 </script>
 
