@@ -48,6 +48,7 @@ const featuresContent = [
 
 <style lang="postcss">
 .features {
-  @apply flex flex-row gap-4 mx-auto max-w-[1080px] pb-20;
+  @apply flex flex-row flex-wrap justify-center gap-4 px-4 mx-auto;
+  @apply xl:w-[1180px];
 }
 </style>
