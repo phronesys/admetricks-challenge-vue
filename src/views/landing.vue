@@ -27,10 +27,10 @@ main#landing {
   clip-path: polygon(50% 5%, 100% 0, 100% 100%, 0 100%, 0 0);
 
   & > .lines {
-    @apply min-w-[1180px] min-h-full flex justify-between -z-10;
+    @apply min-w-[1180px] min-h-full flex justify-between -z-20;
     @apply absolute -translate-x-1/2 left-1/2 pb-80;
     span {
-      @apply min-h-full min-w-[1px] bg-admetricks-gray/50;
+      @apply min-h-full min-w-[1px] bg-admetricks-gray/10;
     }
   }
 }

@@ -25,6 +25,9 @@
       <am-card alternative class="w-[530px] h-[405px]"></am-card>
       <am-card alternative class="w-[260px] h-[486px]"></am-card>
     </div>
+    <div class="logo">
+      <img src="../../assets/logo-admetricks.png" alt="">
+    </div>
   </section>
 </template>
 
@@ -38,7 +41,7 @@ const { width: screenWidth } = useWindowSize();
 
 <style lang="postcss">
 section#header {
-  @apply p-4 pt-96 flex flex-row mx-auto;
+  @apply p-4 pt-[450px] flex flex-row mx-auto;
   @apply xl:w-[1180px];
 }
 section#header > .content {
@@ -55,7 +58,7 @@ section#header > .content > .title {
     @apply sm:text-4xl;
     /* custom underline */
     span {
-      @apply whitespace-nowrap relative z-10;
+      @apply whitespace-nowrap relative z-20;
       &::before {
         @apply content-[''] w-[200px] h-5 absolute bottom-0 -left-1.5 -z-10;
         @apply rounded-xl opacity-50;
@@ -95,6 +98,12 @@ section#header > .devices {
     &:last-child {
       @apply right-0 -translate-y-1/2 top-1/2;
     }
+  }
+}
+section#header > .logo {
+  @apply w-[720px] h-[720px] absolute -z-10 top-40 right-0;
+  & > img {
+    @apply w-full h-full;
   }
 }
 </style>
