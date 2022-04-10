@@ -15,7 +15,8 @@ const props = defineProps({
 
 <style lang="postcss" global>
 .button {
-  @apply py-2 px-7 rounded-full font-semibold;
+  @apply px-4 py-2 text-sm rounded-full font-semibold select-none min-w-max;
+  @apply sm:text-base sm:px-7 sm:py-2;
 
   &.primary {
     @apply bg-admetricks-primary text-admetricks-dark;
