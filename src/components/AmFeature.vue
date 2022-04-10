@@ -15,14 +15,18 @@ import AmIcon from "./AmIcon.vue";
 const { iconName = "device" } = defineProps<{
   iconName: string;
 }>();
-
 </script>
 
 <style lang="postcss">
 .feature {
-  @apply flex flex-col gap-2 min-w-[260px];
+  @apply flex flex-col gap-2 max-w-[275px]  p-4 relative;
   & > h4 {
     @apply text-lg text-white font-semibold;
+    &::before {
+      @apply w-0.5 h-6 block bg-admetricks-primary;
+      @apply content-[''] absolute left-0 translate-y-0.5;
+    }
+    
   }
   & > p {
     @apply leading-5;
