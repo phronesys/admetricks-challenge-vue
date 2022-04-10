@@ -13,6 +13,6 @@ import Landing from "./views/landing.vue";
   font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply bg-admetricks-light m-0 pt-5;
+  @apply bg-admetricks-light m-0 pt-5 selection:bg-admetricks-secondary selection:text-white;
 }
 </style>
