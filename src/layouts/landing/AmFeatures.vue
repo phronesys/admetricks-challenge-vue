@@ -1,5 +1,5 @@
 <template>
-  <div class="features">
+  <section id="features">
     <am-feature
       v-for="feature in featuresContent"
       :key="feature.title"
@@ -8,7 +8,7 @@
       <template #title> {{ feature.title }} </template>
       <template #body> {{ feature.body }} </template>
     </am-feature>
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>
@@ -47,7 +47,7 @@ const featuresContent = [
 </script>
 
 <style lang="postcss">
-.features {
+section#features {
   @apply flex flex-row flex-wrap justify-center gap-4 px-4 mx-auto;
   @apply xl:w-[1180px];
 }

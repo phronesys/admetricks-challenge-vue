@@ -1,9 +1,9 @@
 <template>
-  <section id="landing">
+  <main id="landing">
     <am-header></am-header>
     <am-features></am-features>
     <am-card-grid></am-card-grid>
-  </section>
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -13,7 +13,7 @@ import AmHeader from "../layouts/landing/AmHeader.vue";
 </script>
 
 <style lang="postcss">
-section#landing {
+main#landing {
   @apply flex flex-col mx-auto gap-40 pb-80 pt-96;
   @apply text-admetricks-gray bg-admetricks-dark;
   /* using css instead of an image */
