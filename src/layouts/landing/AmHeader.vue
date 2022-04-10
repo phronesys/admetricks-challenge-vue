@@ -38,7 +38,7 @@ const { width: screenWidth } = useWindowSize();
 
 <style lang="postcss">
 section#header {
-  @apply mx-auto p-4 flex;
+  @apply p-4 pt-96 flex flex-row mx-auto;
   @apply xl:w-[1180px];
 }
 section#header > .content {
@@ -81,7 +81,7 @@ section#header > .content > .buttons {
   @apply flex flex-row gap-2;
 }
 
-/* using cards */
+/* using cards instead of images */
 section#header > .devices {
   @apply relative w-[540px] hidden;
   @apply xl:block;

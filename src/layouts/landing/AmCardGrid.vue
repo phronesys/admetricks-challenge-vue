@@ -23,6 +23,7 @@ const cardClasses = [
 
 <style lang="postcss">
 section#cards {
+  @apply pb-80;
 }
 section#cards .card-grid {
   @apply h-[400px] w-full mx-auto px-8 flex flex-col sm:grid justify-center gap-4;
