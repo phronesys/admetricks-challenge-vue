@@ -42,7 +42,7 @@ const { width: screenWidth } = useWindowSize();
 
 <style lang="postcss">
 section#header {
-  @apply p-4 pt-[630px] flex flex-row mx-auto;
+  @apply p-4 pt-[630px] flex flex-row mx-auto z-10;
   @apply xl:w-[1120px];
 }
 
