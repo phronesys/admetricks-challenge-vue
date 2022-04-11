@@ -10,6 +10,9 @@
     <am-header></am-header>
     <am-features></am-features>
     <am-card-grid></am-card-grid>
+    <img src="../assets/triangle-green.png" class="green" />
+    <img src="../assets/triangle-yellow.png" class="yellow" />
+    <img src="../assets/triangle-orange.png" class="orange" />
   </main>
 </template>
 
@@ -33,8 +36,25 @@ main#landing {
       @apply min-h-full min-w-[1px] bg-admetricks-gray/10;
     }
   }
+  & > img {
+    @apply absolute z-50 hidden;
+    @apply sm:block;
+    &.green {
+      @apply w-44 h-44 top-0;
+      @apply 2xl:top-32 2xl:-left-10 2xl:w-[160px] 2xl:h-[250px];
+    }
+    &.yellow {
+      @apply w-44 h-44 bottom-1/2 right-0;
+      @apply 2xl:bottom-[1250px] 2xl:left-64 2xl:w-[200px] 2xl:h-[200px];
+    }
+    &.orange {
+      @apply w-44 h-44 bottom-0;
+      @apply 2xl:bottom-0 2xl:-left-20 2xl:w-[250px] 2xl:h-[360px];
+    }
+  }
 }
 
+/* clip path mobile fixes */
 @media (min-width: 640px) {
   main#landing {
     clip-path: polygon(50% 2%, 100% 0, 100% 100%, 0 100%, 0 0);
