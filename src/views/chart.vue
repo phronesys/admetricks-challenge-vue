@@ -3,7 +3,10 @@
 </template>
 
 <script setup lang="ts">
-/* reference https://www.digitalocean.com/community/tutorials/getting-started-with-data-visualization-using-javascript-and-the-d3-library */
+/*
+  implemented as 
+  https://www.digitalocean.com/community/tutorials/getting-started-with-data-visualization-using-javascript-and-the-d3-library 
+*/
 import * as d3 from "d3";
 import { onMounted } from "vue";
 
@@ -12,6 +15,27 @@ interface AdmetricksData {
   reach: number;
   frequency: number;
 }
+const barWidth: number = 200;
+
+const calculateBarHeight = (dataPoint: AdmetricksData) => {
+  return dataPoint.reach * 100;
+};
+
+const calculateXPosition = (
+  dataPoint: AdmetricksData,
+  index: number,
+  offset: number
+) => index * (barWidth + 50) + offset;
+
+const calculateYPosition = (
+  dataPoint: AdmetricksData,
+  index: number,
+  offset: number
+) => 500 - dataPoint.reach * 100 - 20;
+
+const getBrandName = (dataPoint: AdmetricksData) => {
+  return dataPoint.name;
+};
 
 onMounted(() => {
   const data = [
@@ -26,24 +50,6 @@ onMounted(() => {
     .attr("width", 500)
     .attr("height", 500);
 
-  const barWidth: number = 200;
-  /* helper functions */
-  const calculateBarHeight = (dataPoint: AdmetricksData) => {
-    return dataPoint.reach * 100;
-  };
-  const calculateXPosition = (
-    dataPoint: AdmetricksData,
-    index: number,
-    offset: number
-  ) => {
-    return index * (barWidth + 50) + offset;
-  };
-  const calculateYPosition = (dataPoint: AdmetricksData, index: number) => {
-    return 500 - dataPoint.reach * 100 - 20;
-  };
-  const getBrandName = (dataPoint: AdmetricksData, index: number) => {
-    return dataPoint.name;
-  };
   /* create rectangles */
   svg
     .selectAll("rect")
@@ -53,7 +59,7 @@ onMounted(() => {
     .attr("height", calculateBarHeight)
     .attr("width", barWidth)
     .attr("x", (d, i) => calculateXPosition(d, i, 0))
-    .attr("y", calculateYPosition);
+    .attr("y", (d, i) => calculateYPosition(d, i, 0));
 
   svg.select("rect").attr("id", "falabella");
 
