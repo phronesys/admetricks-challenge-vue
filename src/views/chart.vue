@@ -7,6 +7,12 @@
 import * as d3 from "d3";
 import { onMounted } from "vue";
 
+interface AdmetricksData {
+  name: string;
+  reach: number;
+  frequency: number;
+}
+
 onMounted(() => {
   const data = [
     { name: "falabella", reach: 0.54, frequency: 8.13 },
@@ -20,23 +26,62 @@ onMounted(() => {
     .attr("width", 500)
     .attr("height", 500);
 
+  const barWidth: number = 200;
+  /* helper functions */
+  const calculateBarHeight = (dataPoint: AdmetricksData) => {
+    return dataPoint.reach * 100;
+  };
+  const calculateXPosition = (
+    dataPoint: AdmetricksData,
+    index: number,
+    offset: number
+  ) => {
+    return index * (barWidth + 50) + offset;
+  };
+  const calculateYPosition = (dataPoint: AdmetricksData, index: number) => {
+    return 500 - dataPoint.reach * 100 - 20;
+  };
+  const getBrandName = (dataPoint: AdmetricksData, index: number) => {
+    return dataPoint.name;
+  };
   /* create rectangles */
   svg
     .selectAll("rect")
     .data(data)
     .enter()
     .append("rect")
-    .attr("height", (dataPoint) => dataPoint.reach * 100)
-    .attr("width", 30)
-    .attr("x", (dataPoint, index) => index * 60 + 25)
-    .attr("y", (dataPoint) => 500 - (dataPoint.reach * 100));
+    .attr("height", calculateBarHeight)
+    .attr("width", barWidth)
+    .attr("x", (d, i) => calculateXPosition(d, i, 0))
+    .attr("y", calculateYPosition);
 
-  /*  */
+  svg.select("rect").attr("id", "falabella");
+
+  svg
+    .selectAll("text")
+    .data(data)
+    .enter()
+    .append("text")
+    .text(getBrandName)
+    .attr("x", (d, i) => calculateXPosition(d, i, 60))
+    .attr("y", 495);
+
+  /* 
+  I need to create other chart over this one with frequency
+  to show the co-relation between reach and frequency,
+  but using points instead of bars
+  */
 });
 </script>
 
 <style lang="postcss">
 main#chart {
-  @apply grid place-items-center h-screen -mt-2;
+  @apply grid place-items-center h-screen -mt-2 px-40;
+  & > svg > rect {
+    @apply fill-[#f4bd6a];
+    &#falabella {
+      @apply fill-[#5ec0bc];
+    }
+  }
 }
 </style>
