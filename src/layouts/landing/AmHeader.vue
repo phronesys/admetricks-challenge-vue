@@ -36,6 +36,7 @@ import AmButton from "../../components/AmButton.vue";
 import AmCard from "../../components/AmCard.vue";
 import { useWindowSize } from "@vueuse/core";
 
+/* using a composable to tell vue the screen width */
 const { width: screenWidth } = useWindowSize();
 </script>
 
