@@ -22,8 +22,8 @@
       </div>
     </div>
     <div class="devices">
-      <am-card alternative class="w-[530px] h-[405px]"></am-card>
-      <am-card alternative class="w-[260px] h-[486px]"></am-card>
+      <am-card alternative id="device-1"></am-card>
+      <am-card alternative id="device-2"></am-card>
       <div class="logo">
         <img src="../../assets/logo-admetricks.png" alt="" />
       </div>
@@ -90,13 +90,14 @@ section#header > .devices {
 
   & > .card {
     @apply absolute;
-    &:nth-child(1) {
-      @apply left-12;
-    }
-    &:nth-child(2) {
-      @apply -right-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2;
-    }
   }
+  & > .card#device-1 {
+    @apply left-12 w-[530px] h-[405px];
+  }
+  & > .card#device-2 {
+    @apply -right-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 w-[260px] h-[486px];
+  }
+
   & > .logo {
     @apply w-[900px] h-[900px] absolute -z-10 -bottom-12 left-44;
     & > img {
