@@ -48,7 +48,7 @@ section#header > .content {
   @apply flex flex-col gap-4 lg:gap-8 xl:w-[580px];
 
   & > .lead {
-    @apply text-admetricks-primary font-semibold;
+    @apply text-admetricks-primary font-semibold lg:-mb-5;
   }
 
   & > .title {
