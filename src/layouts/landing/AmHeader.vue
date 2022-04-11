@@ -24,9 +24,9 @@
     <div class="devices">
       <am-card alternative class="w-[530px] h-[405px]"></am-card>
       <am-card alternative class="w-[260px] h-[486px]"></am-card>
-    </div>
-    <div class="logo">
-      <img src="../../assets/logo-admetricks.png" alt="">
+      <div class="logo">
+        <img src="../../assets/logo-admetricks.png" alt="" />
+      </div>
     </div>
   </section>
 </template>
@@ -41,69 +41,67 @@ const { width: screenWidth } = useWindowSize();
 
 <style lang="postcss">
 section#header {
-  @apply p-4 pt-[450px] flex flex-row mx-auto;
-  @apply xl:w-[1180px];
+  @apply p-4 pt-[630px] flex flex-row mx-auto;
+  @apply xl:w-[1120px];
 }
+
 section#header > .content {
-  @apply flex flex-col gap-8 w-full max-w-[400px] sm:max-w-[540px] pl-4;
-}
+  @apply flex flex-col gap-8 w-[580px];
 
-section#header > .content > .title {
-  @apply text-white font-semibold;
-  & > h5 {
-    @apply text-admetricks-primary;
-  }
-  & > h1 {
-    @apply text-xl leading-normal;
-    @apply sm:text-4xl;
-    /* custom underline */
-    span {
-      @apply whitespace-nowrap relative z-20;
-      &::before {
-        @apply content-[''] w-[200px] h-5 absolute bottom-0 -left-1.5 -z-10;
-        @apply rounded-xl opacity-50;
-        background: transparent
-          linear-gradient(90deg, #00d4ff 0%, #aeda28 100%, #fe7117 100%) 0% 0%
-          no-repeat padding-box;
+  & > .title {
+    @apply text-white font-semibold;
+    & > h5 {
+      @apply text-admetricks-primary;
+    }
+    & > h1 {
+      @apply text-[38px] leading-[53px];
+      /* custom underline */
+      span {
+        @apply whitespace-nowrap relative z-20;
+        &::before {
+          @apply content-[''] w-[200px] h-5 absolute bottom-0 -left-1.5 -z-10;
+          @apply rounded-xl opacity-50;
+          background: transparent
+            linear-gradient(90deg, #00d4ff 0%, #aeda28 100%, #fe7117 100%) 0% 0%
+            no-repeat padding-box;
 
-        @apply sm:w-[400px];
+          @apply sm:w-[400px];
+        }
       }
     }
   }
-}
 
-section#header > .content > .body {
-  @apply sm:text-lg text-sm;
+  & > .body {
+    @apply sm:text-lg text-sm max-w-[532px];
 
-  span {
-    @apply text-admetricks-primary font-semibold;
+    span {
+      @apply text-admetricks-primary font-semibold;
+    }
+  }
+  & > .buttons {
+    @apply flex flex-row gap-2;
   }
 }
 
-section#header > .content > .buttons {
-  @apply flex flex-row gap-2;
-}
-
-/* using cards instead of images */
+/* right elements */
 section#header > .devices {
   @apply relative w-[540px] hidden;
   @apply xl:block;
 
   & > .card {
     @apply absolute;
-
-    &:first-child {
+    &:nth-child(1) {
       @apply left-12;
     }
-    &:last-child {
-      @apply right-0 -translate-y-1/2 top-1/2;
+    &:nth-child(2) {
+      @apply -right-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2;
     }
   }
-}
-section#header > .logo {
-  @apply w-[720px] h-[720px] absolute -z-10 top-40 right-0;
-  & > img {
-    @apply w-full h-full;
+  & > .logo {
+    @apply w-[900px] h-[900px] absolute -z-10 -bottom-12 left-44;
+    & > img {
+      @apply w-full h-full;
+    }
   }
 }
 </style>

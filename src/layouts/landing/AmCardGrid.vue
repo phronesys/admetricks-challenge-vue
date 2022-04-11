@@ -23,16 +23,16 @@ const cardClasses = [
 
 <style lang="postcss">
 section#cards {
-  @apply pb-80;
+  @apply pb-80 max-w-[1400px] w-full flex justify-center mx-auto;
 }
 section#cards .card-grid {
-  @apply h-[400px] w-full mx-auto px-8 flex flex-col sm:grid justify-center gap-4;
-  @apply sm:w-3/4 sm:h-[600px];
-  @apply lg:w-2/3 lg:h-[800px];
+  @apply h-[400px] w-full px-8 flex flex-col mx-auto sm:grid justify-center gap-8;
+  @apply sm:h-[600px];
+  @apply lg:h-[800px];
   @apply xl:h-[1000px];
-  @apply 2xl:h-[1200px] 2xl:max-w-7xl;
+  @apply 2xl:h-[1200px];
 
-  grid-template-columns: 35.5% 29% 35.5%;
+  grid-template-columns: 30% 40% 30%;
   grid-template-rows: 10% 18% 27% 37% 8%;
 }
 </style>
