@@ -1,13 +1,9 @@
 <template>
-  <Landing></Landing>
+  <router-view></router-view>
 </template>
 
-<script setup lang="ts">
-import Landing from "./views/landing.vue";
-</script>
-
 <style lang="postcss">
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 #app {
   font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;

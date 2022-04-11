@@ -16,7 +16,9 @@
       </p>
       <div class="buttons">
         <am-button>Solicitar demo</am-button>
-        <am-button type="link">Ver funcionalidades</am-button>
+        <am-button type="link">
+          <router-link to="/chart">Ver funcionalidades</router-link>
+        </am-button>
       </div>
     </div>
     <div class="devices">
@@ -64,7 +66,6 @@ section#header > .content {
         background: transparent
           linear-gradient(90deg, #00d4ff 0%, #aeda28 100%, #fe7117 100%) 0% 0%
           no-repeat padding-box;
-
       }
     }
   }
