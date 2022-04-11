@@ -19,7 +19,7 @@ const { iconName = "device" } = defineProps<{
 
 <style lang="postcss">
 .feature {
-  @apply flex flex-col gap-2 max-w-[275px]  p-4 relative;
+  @apply flex flex-col gap-2 w-full sm:max-w-[275px] p-4 relative;
   & > h4 {
     @apply text-lg text-white font-semibold;
     &::before {

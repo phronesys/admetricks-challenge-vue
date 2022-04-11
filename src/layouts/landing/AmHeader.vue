@@ -1,13 +1,11 @@
 <template>
   <section id="header">
     <div class="content">
-      <div class="title">
-        <h5>Estamos para ayudarte</h5>
-        <h1>
-          ¿Tienes problemas <br v-if="screenWidth >= 640" />
-          para <span>entender el mercado</span> de la publicidad digital?
-        </h1>
-      </div>
+      <h5 class="lead">Estamos para ayudarte</h5>
+      <h1 class="title">
+        ¿Tienes problemas <br v-if="screenWidth >= 1024" />
+        para <span>entender el mercado</span> de la publicidad digital?
+      </h1>
       <p class="body">
         El Mercado de la publicidad online es incierto y complejo, Admetricks te
         <span
@@ -42,38 +40,38 @@ const { width: screenWidth } = useWindowSize();
 
 <style lang="postcss">
 section#header {
-  @apply p-4 pt-[630px] flex flex-row mx-auto z-10;
+  @apply p-4 pt-40 sm:pt-60 xl:pt-[630px] flex flex-row mx-auto z-10;
   @apply xl:w-[1120px];
 }
 
 section#header > .content {
-  @apply flex flex-col gap-8 w-[580px];
+  @apply flex flex-col gap-4 lg:gap-8 xl:w-[580px];
+
+  & > .lead {
+    @apply text-admetricks-primary font-semibold;
+  }
 
   & > .title {
-    @apply text-white font-semibold;
-    & > h5 {
-      @apply text-admetricks-primary;
-    }
-    & > h1 {
-      @apply text-[38px] leading-[53px];
-      /* custom underline */
-      span {
-        @apply whitespace-nowrap relative z-20;
-        &::before {
-          @apply content-[''] w-[200px] h-5 absolute bottom-0 -left-1.5 -z-10;
-          @apply rounded-xl opacity-50;
-          background: transparent
-            linear-gradient(90deg, #00d4ff 0%, #aeda28 100%, #fe7117 100%) 0% 0%
-            no-repeat padding-box;
+    @apply max-w-xs text-2xl text-white font-semibold;
+    @apply sm:text-3xl sm:max-w-md;
+    @apply xl:max-w-xl xl:text-[38px] xl:leading-[53px];
+    /* custom underline */
+    span {
+      @apply whitespace-nowrap relative z-20;
+      &::before {
+        @apply content-[''] w-full h-5 absolute -bottom-1 -left-1 -z-10;
+        @apply rounded-xl opacity-50;
+        background: transparent
+          linear-gradient(90deg, #00d4ff 0%, #aeda28 100%, #fe7117 100%) 0% 0%
+          no-repeat padding-box;
 
-          @apply sm:w-[400px];
-        }
       }
     }
   }
 
   & > .body {
-    @apply sm:text-lg text-sm max-w-[532px];
+    @apply text-base sm:text-lg max-w-xs;
+    @apply sm:max-w-lg xl:max-w-[540px];
 
     span {
       @apply text-admetricks-primary font-semibold;

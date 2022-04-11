@@ -48,8 +48,8 @@ const featuresContent = [
 
 <style lang="postcss">
 section#features {
-  @apply ml-20 w-[280px] flex flex-row flex-wrap justify-start gap-[4.5px];
-  @apply sm:mx-auto sm:w-[560px];
+  @apply w-[280px] flex flex-row flex-wrap justify-start gap-[4.5px];
+  @apply mx-auto sm:w-[560px];
   @apply xl:w-[1120px];
 }
 </style>
