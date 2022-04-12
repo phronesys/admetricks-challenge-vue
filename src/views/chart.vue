@@ -2,6 +2,8 @@
 /*
   implemented as
   https://www.digitalocean.com/community/tutorials/getting-started-with-data-visualization-using-javascript-and-the-d3-library
+  https://youtu.be/TOJ9yjvlapY
+  https://stackoverflow.com/questions/63720976/d3-v5-center-path-line-in-a-bar-graph
 */
 import * as d3 from "d3";
 import { onMounted } from "vue";
@@ -10,8 +12,13 @@ onMounted(() => {
   const mockData = [
     { name: "falabella", reach: 0.54, frequency: 8.13 },
     { name: "paris", reach: 0.25, frequency: 3.06 },
-    // { name: "owo", reach: 0.3, frequency: 6.06 },
-    // { name: "miau", reach: 0.21, frequency: 2.06 },
+    { name: "owo", reach: 0.3, frequency: 6.06 },
+    { name: "miau", reach: 0.21, frequency: 2.06 },
+    { name: "waw", reach: 0.21, frequency: 2.06 },
+    { name: "1", reach: 0.21, frequency: 2.06 },
+    { name: "asoid", reach: 0.21, frequency: 2.06 },
+    { name: "sdlkgvj", reach: 0.21, frequency: 2.06 },
+    { name: "", reach: 0.21, frequency: 2.06 },
   ];
   const svgWidth: number = 700;
 
@@ -49,15 +56,12 @@ onMounted(() => {
     .attr("y", (data) => yScale(data.reach))
     .attr("x", (data): number => Number(xScale(data.name)));
 
-  svg.select("rect").attr("id", "falabella");
-
   svg
     .selectAll("text")
     .data(mockData)
     .enter()
     .append<SVGTextElement>("text")
     .text((data) => data.name)
-    .attr("transform", "rotate(-25)")
     .attr("x", (data): number => Number(xScale(data.name)))
     .attr("y", 450);
 
