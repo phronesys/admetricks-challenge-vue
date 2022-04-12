@@ -8,9 +8,9 @@
       </h1>
       <p class="body">
         El Mercado de la publicidad online es incierto y complejo, Admetricks te
-        <span
-          >ayuda a visibilizar cómo desempeñan las campañas y contenidos</span
-        >
+        <span>
+          ayuda a visibilizar cómo desempeñan las campañas y contenidos
+        </span>
         versus los de tu competencia en tiempo real con reportes y alertas
         automáticas
       </p>

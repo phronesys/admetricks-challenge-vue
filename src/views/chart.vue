@@ -1,78 +1,67 @@
-<template>
-  <main id="chart"></main>
-</template>
-
 <script setup lang="ts">
 /*
-  implemented as 
-  https://www.digitalocean.com/community/tutorials/getting-started-with-data-visualization-using-javascript-and-the-d3-library 
+  implemented as
+  https://www.digitalocean.com/community/tutorials/getting-started-with-data-visualization-using-javascript-and-the-d3-library
 */
 import * as d3 from "d3";
 import { onMounted } from "vue";
 
-interface AdmetricksData {
-  name: string;
-  reach: number;
-  frequency: number;
-}
-const barWidth: number = 200;
-
-const calculateBarHeight = (dataPoint: AdmetricksData) => {
-  return dataPoint.reach * 100;
-};
-
-const calculateXPosition = (
-  dataPoint: AdmetricksData,
-  index: number,
-  offset: number
-) => index * (barWidth + 50) + offset;
-
-const calculateYPosition = (
-  dataPoint: AdmetricksData,
-  index: number,
-  offset: number
-) => 500 - dataPoint.reach * 100 - 20;
-
-const getBrandName = (dataPoint: AdmetricksData) => {
-  return dataPoint.name;
-};
-
 onMounted(() => {
-  const data = [
+  const mockData = [
     { name: "falabella", reach: 0.54, frequency: 8.13 },
     { name: "paris", reach: 0.25, frequency: 3.06 },
+    // { name: "owo", reach: 0.3, frequency: 6.06 },
+    // { name: "miau", reach: 0.21, frequency: 2.06 },
   ];
+  const svgWidth: number = 700;
 
-  /* create svg */
-  const svg = d3
-    .select("#chart")
-    .append("svg")
-    .attr("width", 500)
-    .attr("height", 500);
+  /* select svg element */
+  const svg = d3.select("svg#chart");
+  /* reference: https://github.com/d3/d3-scale */
+  /*
+    - xScale: all the items with the same width
+    - domain: tell d3 how many items are
+    - rangeRound: tell d3 how much space is available
+    - padding: space between bars
+  */
+
+  const xScale = d3
+    .scaleBand()
+    .domain(mockData.map((data) => data.name))
+    .rangeRound([0, 500])
+    .padding(0.1);
+  /*
+    yScale: all the bars with proportional height
+    - scaleLinear: proportional height for the values
+    - domain: uses the value range from dataPoint
+    - range: height available (is painted from top to bottom)
+  */
+  const yScale = d3.scaleLinear().domain([0, 0.54]).range([500, 0]);
 
   /* create rectangles */
   svg
     .selectAll("rect")
-    .data(data)
+    .data(mockData)
     .enter()
-    .append("rect")
-    .attr("height", calculateBarHeight)
-    .attr("width", barWidth)
-    .attr("x", (d, i) => calculateXPosition(d, i, 0))
-    .attr("y", (d, i) => calculateYPosition(d, i, 0));
+    .append<SVGRectElement>("rect")
+    .attr("width", xScale.bandwidth())
+    .attr("height", (data) => 420 - yScale(data.reach))
+    .attr("y", (data) => yScale(data.reach))
+    .attr("x", (data): number => Number(xScale(data.name)));
 
   svg.select("rect").attr("id", "falabella");
 
   svg
     .selectAll("text")
-    .data(data)
+    .data(mockData)
     .enter()
-    .append("text")
-    .text(getBrandName)
-    .attr("x", (d, i) => calculateXPosition(d, i, 60))
-    .attr("y", 495);
+    .append<SVGTextElement>("text")
+    .text((data) => data.name)
+    .attr("transform", "rotate(-25)")
+    .attr("x", (data): number => Number(xScale(data.name)))
+    .attr("y", 450);
 
-  /* 
+  /*
   I need to create other chart over this one with frequency
   to show the co-relation between reach and frequency,
   but using points instead of bars
@@ -80,13 +69,23 @@ onMounted(() => {
 });
 </script>
 
+<template>
+  <main id="chart-view">
+    <svg id="chart" width="500" height="500"></svg>
+  </main>
+</template>
+
 <style lang="postcss">
-main#chart {
+main#chart-view {
   @apply grid place-items-center h-screen -mt-2 px-40;
-  & > svg > rect {
-    @apply fill-[#f4bd6a];
-    &#falabella {
-      @apply fill-[#5ec0bc];
+  & > svg {
+    @apply border border-admetricks-gray rounded-md;
+    /* bars */
+    & > rect {
+      @apply fill-[#f4bd6a];
+      &:hover {
+        @apply fill-[#5ec0bc];
+      }
     }
   }
 }
