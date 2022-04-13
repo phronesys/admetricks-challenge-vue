@@ -8,7 +8,7 @@ const data: AdmetricksData[] = reactive([
     reach: 0.4,
     frequency: 6,
   },
-]) 
+]);
 
 describe(`BarChart`, async () => {
   let wrapper: VueWrapper;
@@ -52,25 +52,31 @@ describe(`BarChart`, async () => {
       reach: 0.7,
       frequency: 5,
     };
+    const exampleBrand2: AdmetricksData = {
+      name: "mercadoLiebre",
+      reach: 0.7,
+      frequency: 5,
+    };
+    /* data.length === 1 */
     let allRect = wrapper.findAll("rect");
     expect(allRect.length).toEqual(data.length);
 
-    data.push(exampleBrand)
-    console.log(data);
-    
+    data.push(exampleBrand);
     await wrapper.setProps({
-      data: data.push(exampleBrand),
-      margin: 64,
-      svgWidth: 900,
-      svgHeight: 400,
-      colors: ["red", "white"],
-    }); // updates prop
+      data,
+    });
 
+    /* data.length === 2 */
     allRect = wrapper.findAll("rect");
-    allRect.forEach(rect => {
-      console.log(rect);
-    })
+    expect(allRect.length).toEqual(data.length);
 
+    data.push(exampleBrand2);
+    await wrapper.setProps({
+      data,
+    });
+
+    /* data.length === 3 */
+    allRect = wrapper.findAll("rect");
     expect(allRect.length).toEqual(data.length);
   });
 });

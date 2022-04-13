@@ -19,10 +19,10 @@ const svgRef = ref(null);
 
 onMounted(() => {
   watchEffect(() => {
-    const svgElement = document.querySelector('#chart-view > svg');
-    
+    const svgElement = d3.select(svgRef.value).select("svg");
+
     if (svgElement !== null) {
-      d3.select("svg").remove();
+      d3.select(svgRef.value).select("svg").remove();
     }
 
     const width = svgWidth - margin * 2;
