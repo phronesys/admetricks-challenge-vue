@@ -8,6 +8,7 @@ This is the first part of the admetricks challenge, that consist on creating two
 
 The idea is to incorporate this components into an AngularJS App as a single-spa, containing the Vue app as a component with views...
 But I couldn't do the AngularJs part because of time, I spend quite a while on learning D3, and I did enjoy it 
+### [Demo](https://luxury-hamster-60025b.netlify.app/#/) 
 
 ## To run this project
 To compile use Node v16 or newer
