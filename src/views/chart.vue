@@ -11,13 +11,13 @@ onMounted(() => {
   const mockData = [
     { name: "falabella", reach: 0.54, frequency: 8.13 },
     { name: "paris", reach: 0.25, frequency: 3.06 },
-    /*     { name: "owo", reach: 0.3, frequency: 6.06 },
+  /*  { name: "owo", reach: 0.3, frequency: 6.06 },
     { name: "miau", reach: 0.21, frequency: 2.06 },
     { name: "waw", reach: 0.4, frequency: 2.06 },
     { name: "1", reach: 0.57, frequency: 2.06 },
     { name: "asoid", reach: 0.1, frequency: 2.06 },
     { name: "sdlkgvj", reach: 0.8, frequency: 2.06 },
-    { name: "", reach: 0.45, frequency: 2.06 }, */
+    { name: "", reach: 0.45, frequency: 2.06 }  */
   ];
   const margin = {
     top: 32,
@@ -85,16 +85,6 @@ onMounted(() => {
     .call(d3.axisRight(yAxisFreq).ticks(4))
     .attr("transform", `translate(${width},0)`);
 
-  /* append text to circles */
-  /*   svg
-    .selectAll("text")
-    .data(mockData)
-    .enter()
-    .append("text")
-    .text(data => data.frequency)
-    .attr("x", (data) => Number(xAxis(data.name)) + xAxis.bandwidth() / 2)
-    .attr("y", (data) => Number(yAxisFreq(data.frequency))); */
-  /* lines between circles */
   var line = d3
     .line<AdmetricksData>()
     .x((data: AdmetricksData) => {
@@ -125,6 +115,7 @@ onMounted(() => {
     .attr("cy", (data) => margin.top + Number(yAxisFreq(data.frequency)))
     .attr("r", 8);
 
+  /* append text to circles */
   svg
     .selectAll("frequencyText")
     .data(mockData)
@@ -132,10 +123,10 @@ onMounted(() => {
     .append("text")
     .attr("x", (data) => Number(xAxis(data.name)) + xAxis.bandwidth() / 2)
     .attr("y", (data) => margin.top + yAxisFreq(data.frequency) - 16)
-    .attr('text-anchor', 'start')
-    .style('font-size', '14px')
-    .style('font-weight', '600')
-    .text(data => data.frequency)
+    .attr("text-anchor", "start")
+    .style("font-size", "14px")
+    .style("font-weight", "600")
+    .text((data) => data.frequency);
 });
 </script>
 
