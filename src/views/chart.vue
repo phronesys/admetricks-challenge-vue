@@ -62,8 +62,11 @@ onMounted(() => {
     .enter()
     .append<SVGTextElement>("text")
     .text((data) => data.name)
-    .attr("x", (data): number => Number(xScale(data.name)))
-    .attr("y", 450);
+    .attr("y", 450)
+    .attr(
+      "x",
+      (data): number => Number(xScale(data.name)) + xScale.bandwidth() / 2
+    );
 
   /*
   I need to create other chart over this one with frequency
