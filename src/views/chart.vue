@@ -2,15 +2,16 @@
 import { ref } from "vue";
 import jsonData from "../services/data.json";
 import AmBarChart, { AdmetricksData } from "../components/AmBarChart.vue";
+import AmButton from "../components/AmButton.vue";
 
 const brandData: any = ref(jsonData);
 
 const addValue = () => {
-  const randomValue: AdmetricksData  = {
+  const randomValue: AdmetricksData = {
     name: "santa claus",
     reach: 0.3,
     frequency: 5,
-  }
+  };
   brandData.value.data.push(randomValue);
 };
 
@@ -41,12 +42,8 @@ const removeValue = () => {
     </div>
   </main>
   <div class="flex flex-row gap-4 justify-center mt-6">
-    <button class="bg-gray-500 text-white px-4 py-2" @click="addValue">
-      Add value
-    </button>
-    <button class="bg-gray-500 text-white px-4 py-2" @click="removeValue">
-      Remove value
-    </button>
+    <am-button type="secondary" @click="addValue"> Add value </am-button>
+    <am-button type="tertiary" @click="removeValue"> Remove value </am-button>
   </div>
 </template>
 
