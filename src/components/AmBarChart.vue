@@ -7,20 +7,26 @@ interface AdmetricksData {
   reach: number;
   frequency: number;
 }
-const { data } = defineProps<{ data: AdmetricksData[] }>();
+interface Props {
+  data: AdmetricksData[];
+  margin: number;
+  svgWidth: number;
+  svgHeight: number;
+  colors: string[];
+}
+const { data, margin, svgHeight, svgWidth, colors } = defineProps<Props>();
 const svgRef = ref(null);
 
 onMounted(() => {
-  const margin = 64;
-  const svgWidth = 900;
-  const svgHeight = 400;
-  const width = svgWidth - margin * 2;
-  const height = svgHeight - margin * 2;
-  const colors = ["#f4bd6a", "#5ec0bc"];
   watchEffect(() => {
-    /* if (svg === null) {
-      d3.select("#chart-view").remove();
-    } */
+    const svgElement = document.querySelector('#chart-view > svg');
+    
+    if (svgElement !== null) {
+      d3.select("svg").remove();
+    }
+
+    const width = svgWidth - margin * 2;
+    const height = svgHeight - margin * 2;
     /* create color by reach */
     const quantizeScale = d3
       .scaleQuantize<string>()
