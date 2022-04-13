@@ -3,14 +3,16 @@ import { ref } from "vue";
 import jsonData from "../services/data.json";
 import AmBarChart, { AdmetricksData } from "../components/AmBarChart.vue";
 import AmButton from "../components/AmButton.vue";
+import faker from '@faker-js/faker'
 
 const brandData: any = ref(jsonData);
 
 const addValue = () => {
+  const name = faker.company.companyName();
   const randomValue: AdmetricksData = {
-    name: "santa claus",
-    reach: 0.3,
-    frequency: 5,
+    name,
+    reach: Math.random(),
+    frequency: Number((Math.random() * 10).toFixed(2)),
   };
   brandData.value.data.push(randomValue);
 };
