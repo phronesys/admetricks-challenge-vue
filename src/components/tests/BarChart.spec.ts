@@ -10,23 +10,23 @@ const data: AdmetricksData[] = reactive([
   },
 ]);
 
-describe(`BarChart`, async () => {
-  let wrapper: VueWrapper;
-  beforeEach(() => {
-    wrapper = mount(AmBarChart, {
-      props: {
-        data,
-        margin: 64,
-        svgWidth: 900,
-        svgHeight: 400,
-        colors: ["red", "white"],
-      },
-    });
+let wrapper: VueWrapper;
+beforeEach(() => {
+  wrapper = mount(AmBarChart, {
+    props: {
+      data,
+      margin: 64,
+      svgWidth: 900,
+      svgHeight: 400,
+      colors: ["red", "white"],
+    },
   });
-  afterEach(() => {
-    if (wrapper) wrapper.unmount();
-  });
+});
+afterEach(() => {
+  wrapper?.unmount();
+});
 
+describe(`BarChart`, async () => {
   test(`should render an svg when mounted`, async () => {
     expect(wrapper.find("svg").exists()).toBe(true);
   });

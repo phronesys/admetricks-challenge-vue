@@ -4,7 +4,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Landing from '../views/landing.vue';
 import Chart from '../views/chart.vue';
 
-const routes = [
+export const routes = [
   { path: '/', component: Landing },
   { path: '/chart', component: Chart },
 ]
