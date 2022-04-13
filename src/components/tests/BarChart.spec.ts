@@ -1,5 +1,5 @@
 import { mount, VueWrapper } from "@vue/test-utils";
-import AmBarChart, { AdmetricksData, Props } from "../AmBarChart.vue";
+import AmBarChart, { AdmetricksData } from "../AmBarChart.vue";
 import { reactive } from "vue";
 
 const data: AdmetricksData[] = reactive([
