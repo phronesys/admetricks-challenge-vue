@@ -10,6 +10,8 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@types/node": "^17.0.23",
+    "@types/ws": "^8.5.3",
     "d3": "^7.4.3",
     "vue": "^3.2.25"
   },
