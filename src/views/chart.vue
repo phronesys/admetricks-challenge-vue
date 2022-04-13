@@ -1,22 +1,21 @@
 <script setup lang="ts">
-import * as d3 from "d3";
-import { onMounted, ref, computed } from "vue";
+import { ref } from "vue";
 import jsonData from "../services/data.json";
-import AmBarChart from "../components/AmBarChart.vue";
+import AmBarChart, { AdmetricksData } from "../components/AmBarChart.vue";
 
-interface AdmetricksData {
-  name: string;
-  reach: number;
-  frequency: number;
-}
-const brandData = ref(jsonData);
+const brandData: any = ref(jsonData);
 
 const addValue = () => {
-  brandData.value.data.push({
+  const randomValue: AdmetricksData  = {
     name: "santa claus",
     reach: 0.3,
     frequency: 5,
-  });
+  }
+  brandData.value.data.push(randomValue);
+};
+
+const removeValue = () => {
+  brandData.value.data.pop();
 };
 </script>
 
@@ -41,9 +40,14 @@ const addValue = () => {
       <div class="frequency">Frecuencia</div>
     </div>
   </main>
-  <button class="bg-gray-500 text-white px-4 py-2" @click="addValue">
-    Add value
-  </button>
+  <div class="flex flex-row gap-4 justify-center mt-6">
+    <button class="bg-gray-500 text-white px-4 py-2" @click="addValue">
+      Add value
+    </button>
+    <button class="bg-gray-500 text-white px-4 py-2" @click="removeValue">
+      Remove value
+    </button>
+  </div>
 </template>
 
 <style lang="postcss">
