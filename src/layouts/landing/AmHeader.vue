@@ -15,7 +15,9 @@
         automáticas
       </p>
       <div class="buttons">
-        <am-button>Solicitar demo</am-button>
+        <am-button>
+          <router-link to="/chart">Solicitar demo</router-link>
+        </am-button>
         <am-button type="link">
           <router-link to="/chart">Ver funcionalidades</router-link>
         </am-button>
