@@ -2,12 +2,12 @@
 import { onMounted, ref, watchEffect } from "vue";
 import * as d3 from "d3";
 
-interface AdmetricksData {
+export interface AdmetricksData {
   name: string;
   reach: number;
   frequency: number;
 }
-interface Props {
+export interface Props {
   data: AdmetricksData[];
   margin: number;
   svgWidth: number;
