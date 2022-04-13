@@ -1,4 +1,5 @@
 <template>
+<div class="bg-admetricks-light pt-2">
   <main id="landing">
     <div class="lines">
       <span></span>
@@ -14,6 +15,7 @@
     <img src="../assets/triangle-yellow.png" class="yellow" />
     <img src="../assets/triangle-orange.png" class="orange" />
   </main>
+</div>
 </template>
 
 <script setup lang="ts">
