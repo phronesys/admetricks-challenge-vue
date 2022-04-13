@@ -11,7 +11,7 @@ onMounted(() => {
   const mockData = [
     { name: "falabella", reach: 0.54, frequency: 8.13 },
     { name: "paris", reach: 0.25, frequency: 3.06 },
-  /*  { name: "owo", reach: 0.3, frequency: 6.06 },
+    /*  { name: "owo", reach: 0.3, frequency: 6.06 },
     { name: "miau", reach: 0.21, frequency: 2.06 },
     { name: "waw", reach: 0.4, frequency: 2.06 },
     { name: "1", reach: 0.57, frequency: 2.06 },
@@ -20,13 +20,13 @@ onMounted(() => {
     { name: "", reach: 0.45, frequency: 2.06 }  */
   ];
   const margin = {
-    top: 32,
+    top: 64,
     right: 64,
     bottom: 64,
     left: 64,
   };
   const svgWidth = 900;
-  const svgHeight = 500;
+  const svgHeight = 400;
   const width = svgWidth - margin.left - margin.right;
   const height = svgHeight - margin.top - margin.bottom;
   const colors = ["#f4bd6a", "#5ec0bc"];
@@ -59,7 +59,7 @@ onMounted(() => {
     .style("text-anchor", "end"); // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor
 
   /* Y axis for reach */
-  const yAxis = d3.scaleLinear().domain([0, 0.54]).range([height, 0]);
+  const yAxis = d3.scaleLinear().domain([0, 0.5]).range([height, 0]);
   svg
     .append("g")
     .call(d3.axisLeft(yAxis).tickFormat(d3.format(".2%")).ticks(6));
@@ -91,7 +91,7 @@ onMounted(() => {
       return Number(xAxis(data.name)) + xAxis.bandwidth() / 2;
     })
     .y((data: AdmetricksData) => {
-      return margin.top + Number(yAxisFreq(data.frequency));
+      return Number(yAxisFreq(data.frequency));
     });
 
   svg
@@ -112,7 +112,7 @@ onMounted(() => {
     .attr("stroke", "#5682b0")
     .attr("stroke-width", 2.5)
     .attr("cx", (data) => Number(xAxis(data.name)) + xAxis.bandwidth() / 2)
-    .attr("cy", (data) => margin.top + Number(yAxisFreq(data.frequency)))
+    .attr("cy", (data) => Number(yAxisFreq(data.frequency)))
     .attr("r", 8);
 
   /* append text to circles */
@@ -122,7 +122,7 @@ onMounted(() => {
     .enter()
     .append("text")
     .attr("x", (data) => Number(xAxis(data.name)) + xAxis.bandwidth() / 2)
-    .attr("y", (data) => margin.top + yAxisFreq(data.frequency) - 16)
+    .attr("y", (data) => yAxisFreq(data.frequency) - 16)
     .attr("text-anchor", "start")
     .style("font-size", "14px")
     .style("font-weight", "600")
@@ -131,17 +131,55 @@ onMounted(() => {
 </script>
 
 <template>
-  <main id="chart-view"></main>
+  <main class="chart">
+    <div class="title">
+      <h4>Alcance y frecuencia por top Marcas</h4>
+      <div class="flex items-center divide-x">
+        <img src="../assets/icons/icon-download.svg" alt="" />
+        <img src="../assets/icons/icon-menu.svg" alt="" />
+      </div>
+    </div>
+    <div id="chart-view"></div>
+    <div class="footer">
+      <div class="reach">Alcance</div>
+      <div class="frequency">Frecuencia</div>
+    </div>
+  </main>
 </template>
 
 <style lang="postcss">
-main#chart-view {
-  @apply grid place-items-center h-screen -mt-2 px-40;
-  & > svg {
-    @apply border border-admetricks-gray rounded-md;
-    g.tick > line,
-    path.domain {
-      @apply hidden;
+main.chart {
+  @apply max-w-[900px] h-max shadow-md mx-auto mt-40 rounded-lg overflow-hidden;
+  & > .title {
+    @apply pl-4 flex flex-row items-center justify-between divide-x;
+    @apply bg-gray-50 text-gray-500;
+    & img {
+      @apply p-2 cursor-pointer;
+    }
+  }
+  #chart-view {
+    & > svg {
+      g.tick > line,
+      path.domain {
+        @apply hidden;
+      }
+    }
+  }
+  & > .footer {
+    @apply flex flex-row justify-center items-center gap-6 py-3 text-sm;
+    .reach {
+      &::before {
+        @apply content-[''] block bg-[#5682b0] w-12 h-3;
+      }
+    }
+    .frequency {
+      &::before {
+        @apply content-[''] block bg-white rounded-full border-2 border-[#5682b0] w-4 h-4;
+      }
+    }
+    .reach,
+    .frequency {
+      @apply flex flex-row items-center gap-2;
     }
   }
 }
