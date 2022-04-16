@@ -8,11 +8,11 @@ export interface AdmetricksData {
   frequency: number;
 }
 export interface Props {
-  data: AdmetricksData[];
-  margin: number;
-  svgWidth: number;
-  svgHeight: number;
-  colors: string[];
+  data: AdmetricksData[] | string[] | any[];
+  margin: number | string | any;
+  svgWidth: number | string | any;
+  svgHeight: number | string | any;
+  colors: string[] | any[];
 }
 const { data, margin, svgHeight, svgWidth, colors } = defineProps<Props>();
 const svgRef = ref(null);
