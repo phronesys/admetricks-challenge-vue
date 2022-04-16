@@ -135,13 +135,9 @@ onMounted(() => {
   <div ref="svgRef" id="chart-view"></div>
 </template>
 
-<style lang="postcss">
-#chart-view {
-  & > svg {
-    g.tick > line,
-    path.domain {
-      @apply hidden;
-    }
-  }
+<style scoped>
+g.tick > line,
+path.domain {
+  display: none;
 }
 </style>
