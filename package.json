@@ -34,7 +34,17 @@
     "vue-tsc": "^0.29.8"
   },
   "description": "This is the first part of the admetricks challenge, that consist on creating two components:",
-  "main": "dist",
+  "main": "./dist/WCBarChart.umd.js",
+  "module": "./dist/WCBarChart.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/WCBarChart.es.js",
+      "export": "./dist/WCBarChart.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/phronesys/admetricks-challenge-vue.git"
