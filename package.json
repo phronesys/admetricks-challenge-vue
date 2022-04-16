@@ -34,12 +34,12 @@
     "vue-tsc": "^0.29.8"
   },
   "description": "This is the first part of the admetricks challenge, that consist on creating two components:",
-  "main": "./dist/WCBarChart.umd.js",
-  "module": "./dist/WCBarChart.es.js",
+  "main": "./dist/bar-chart.umd.js",
+  "module": "./dist/bar-chart.es.js",
   "exports": {
     ".": {
-      "import": "./dist/WCBarChart.es.js",
-      "export": "./dist/WCBarChart.umd.js"
+      "import": "./dist/bar-chart.es.js",
+      "require": "./dist/bar-chart.umd.js"
     }
   },
   "files": [

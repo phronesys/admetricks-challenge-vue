@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, './src/web-components/index.ts'),
       name: 'BarChart',
-      fileName: 'WCBarChart'
+      fileName: (format) => `bar-chart.${format}.js`
     },
     rollupOptions: {
       external: ['vue', 'd3'],

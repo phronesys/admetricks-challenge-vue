@@ -12,6 +12,7 @@ by getting new features on parts that we don't need to change now
 custom elements (wc) best practices: https://web.dev/index.md/
 vue and web components: https://vuejs.org/guide/extras/web-components.html
 microfrontend using web components: https://medium.com/swlh/micro-frontend-using-web-components-e9faacfc101b
+vite build as lib: https://vitejs.dev/guide/build.html#library-mode
 
 */
 
@@ -21,7 +22,7 @@ import AmBarChart from "../components/AmBarChart.vue";
 const BarChart = defineCustomElement(AmBarChart);
 customElements.define("bar-chart", BarChart);
 
-export default BarChart;
+export { BarChart, AmBarChart };
 /* instantiate the custom element */
 /* document.body.appendChild(
   new BarChart({
