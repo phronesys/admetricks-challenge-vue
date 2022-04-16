@@ -1,6 +1,6 @@
 {
-  "name": "vue-app",
-  "private": true,
+  "name": "@phronesyss/bar-chart",
+  "private": false,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -32,5 +32,21 @@
     "vitest": "^0.9.3",
     "vue-router": "^4.0.14",
     "vue-tsc": "^0.29.8"
-  }
+  },
+  "description": "This is the first part of the admetricks challenge, that consist on creating two components:",
+  "main": "dist",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phronesys/admetricks-challenge-vue.git"
+  },
+  "keywords": [
+    "bar",
+    "chart"
+  ],
+  "author": "phronesys",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phronesys/admetricks-challenge-vue/issues"
+  },
+  "homepage": "https://github.com/phronesys/admetricks-challenge-vue#readme"
 }
