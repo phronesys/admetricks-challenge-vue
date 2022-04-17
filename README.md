@@ -4,7 +4,7 @@ This is the first part of the admetricks challenge, that consist on creating two
 
 - [X] Responsive landing page
 - [X] D3 chart
-- [ ] ~~AngularJS Microfront~~
+- [X] AngularJS Microfront (see: `web-component` branch)
 
 The idea is to incorporate this components into an AngularJS App as a single-spa, containing the Vue app as a component with views...
 But I couldn't do the AngularJs part because of time, I spend quite a while on learning D3, and I did enjoy it 
