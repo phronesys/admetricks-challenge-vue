@@ -12,11 +12,12 @@ export default defineConfig({
       fileName: (format) => `bar-chart.${format}.js`
     },
     rollupOptions: {
-      external: ['vue', 'd3'],
+      external: ['vue', 'd3', '@faker-js/faker'],
       output: {
         globals: {
-          vue: 'Vue',
-          d3: 'd3'
+          vue: 'vue',
+          d3: 'd3',
+          faker: '@faker-js/faker'
         }
       }
     }
