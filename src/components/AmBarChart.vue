@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref } from "vue";
 import * as d3 from "d3";
-import faker from "@faker-js/faker";
 
 export interface AdmetricksData {
   name: string;
@@ -137,19 +136,12 @@ const renderChart = (data: AdmetricksData[]) => {
 };
 
 /* add random data */
-const addValue = () => {
+const addValue = ({ detail }: any) => {
   if (dataLocal.value === undefined)
     return new Error("Can't add value to undefined");
 
-  const name = faker.company.companyName();
-  const randomValue: AdmetricksData = {
-    name,
-    reach: Math.random(),
-    frequency: Number((Math.random() * 10).toFixed(2)),
-  };
-
-  // update dataLocal and re-render
-  dataLocal.value.push(randomValue);
+   // update dataLocal and re-render
+  dataLocal.value.push(detail);
   renderChart(dataLocal.value);
 };
 /* remove last data inserted */
@@ -179,6 +171,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  document.removeEventListener("initialJsonData", initializeData);
   document.removeEventListener("addBarChartValue", addValue);
   document.removeEventListener("removeBarChartValue", removeValue);
 });

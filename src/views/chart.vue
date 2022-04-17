@@ -21,12 +21,21 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import AmBarChart from "../components/AmBarChart.vue";
+import AmBarChart, { AdmetricksData } from "../components/AmBarChart.vue";
 import AmButton from "../components/AmButton.vue";
 import jsonData from "../services/data.json";
+import faker from "@faker-js/faker";
 
 const addValue = () => {
-  const customEvent = new CustomEvent("addBarChartValue");
+  const name = faker.company.companyName();
+  const randomValue: AdmetricksData = {
+    name,
+    reach: Math.random(),
+    frequency: Number((Math.random() * 10).toFixed(2)),
+  };
+  const customEvent = new CustomEvent("addBarChartValue", {
+    detail: randomValue,
+  });
   document.dispatchEvent(customEvent);
 };
 
@@ -38,10 +47,10 @@ const removeValue = () => {
 const sendInitialJsonData = () => {
   const data: any = jsonData.data;
   const customEvent = new CustomEvent("initialJsonData", {
-    detail: data
-  })
+    detail: data,
+  });
   document.dispatchEvent(customEvent);
-}
+};
 
 onMounted(() => {
   sendInitialJsonData();
