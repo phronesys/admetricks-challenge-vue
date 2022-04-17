@@ -8,12 +8,12 @@ export interface AdmetricksData {
   frequency: number;
 }
 export interface Props {
-  margin: number | string | any;
-  svgWidth: number | string | any;
-  svgHeight: number | string | any;
+  margin: number | string;
+  svgWidth: number | string;
+  svgHeight: number | string;
 }
 
-const { margin, svgHeight, svgWidth } = defineProps<Props>();
+const { margin = 0, svgHeight = 0, svgWidth = 0} = defineProps<Props>();
 const svgRef = ref(null);
 const dataLocal = ref<AdmetricksData[]>();
 
@@ -25,8 +25,8 @@ const renderChart = (data: AdmetricksData[]) => {
     d3.select(svgRef.value).select("svg").remove();
   }
 
-  const width = svgWidth - margin * 2;
-  const height = svgHeight - margin * 2;
+  const width = Number(svgWidth) - Number(margin) * 2;
+  const height = Number(svgHeight) - Number(margin) * 2;
   /* create color by reach */
   const quantizeScale = d3
     .scaleQuantize<string>()
@@ -37,10 +37,10 @@ const renderChart = (data: AdmetricksData[]) => {
   const svg = d3
     .select(svgRef.value)
     .append("svg")
-    .attr("width", svgWidth)
-    .attr("height", svgHeight)
+    .attr("width", Number(svgWidth))
+    .attr("height", Number(svgHeight))
     .append("g")
-    .attr("transform", `translate(${margin},${margin})`);
+    .attr("transform", `translate(${Number(margin)},${Number(margin)})`);
 
   /* X axis */
   const xAxis = d3
