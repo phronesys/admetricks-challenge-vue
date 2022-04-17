@@ -1,14 +1,12 @@
-## Admetricks challenge
+## Admetricks challenge (Web component export)
 
-This is the first part of the admetricks challenge, that consist on creating two components:
-
-- [X] Responsive landing page
-- [X] D3 chart
-- [ ] ~~AngularJS Microfront~~
-
-The idea is to incorporate this components into an AngularJS App as a single-spa, containing the Vue app as a component with views...
-But I couldn't do the AngularJs part because of time, I spend quite a while on learning D3, and I did enjoy it 
-### [Demo](https://luxury-hamster-60025b.netlify.app/#/) 
+- This branch will not be merged into master, because library is exported here... master has a website to see the landing
+- I had to make this repo public to use npm without much configuration (or paying xD): [package](https://www.npmjs.com/package/@phronesyss/bar-chart)
+- When building this project you will get a library export (which is created using rollup under the hood and is treeshakeable) with the BarChart Web Component ready to use
+- To communicate with the component we need to use CustomEvents:
+  - `initialJsonData`: pass initial json data
+  - `addBarChartValue`: add value to local data
+  - `removeBarChartValue`
 
 ## To run this project
 To compile use Node v16 or newer
@@ -32,6 +30,12 @@ Will open the app in http://localhost:3000 on the landing page, click on any of 
 - vitest (similar to jest with hmr)
 - tailwindcss
 - D3
+
+### Reference Web Components
+- custom elements (wc) best practices: https://web.dev/index.md/
+- vue and web components: https://vuejs.org/guide/extras/web-components.html
+- microfrontend using web components: https://medium.com/swlh/micro-frontend-using-web-components-e9faacfc101b
+- vite build as lib: https://vitejs.dev/guide/build.html#library-mode
 
 ### Reference D3
 
