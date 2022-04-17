@@ -15,9 +15,9 @@ export default defineConfig({
       external: ['vue', 'd3', '@faker-js/faker'],
       output: {
         globals: {
-          vue: 'vue',
+          vue: 'Vue',
           d3: 'd3',
-          faker: '@faker-js/faker'
+          '@faker-js/faker': 'faker'
         }
       }
     }
