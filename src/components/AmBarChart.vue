@@ -13,7 +13,7 @@ export interface Props {
   svgHeight: number | string;
 }
 
-const { margin, svgHeight, svgWidth} = defineProps<Props>();
+const { margin, svgHeight, svgWidth } = defineProps<Props>();
 const svgRef = ref(null);
 const dataLocal = ref<AdmetricksData[]>();
 
@@ -73,11 +73,7 @@ const renderChart = (data: AdmetricksData[]) => {
     .attr("x", (data: AdmetricksData) => Number(xAxis(data.name)))
     .attr("width", xAxis.bandwidth())
     .attr("fill", (data: AdmetricksData) => quantizeScale(data.reach))
-    .attr("height", (data: AdmetricksData) => {
-      console.log(height - yAxis(data.reach));
-      
-      return height - yAxis(data.reach)
-    })
+    .attr("height", (data: AdmetricksData) => height - yAxis(data.reach))
     .attr("y", (data: AdmetricksData) => yAxis(data.reach));
 
   /* frequency */
@@ -144,7 +140,7 @@ const addValue = ({ detail }: any) => {
   if (dataLocal.value === undefined)
     return new Error("Can't add value to undefined");
 
-   // update dataLocal and re-render
+  // update dataLocal and re-render
   dataLocal.value.push(detail);
   renderChart(dataLocal.value);
 };
