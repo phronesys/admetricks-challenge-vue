@@ -7,6 +7,9 @@
   - `initialJsonData`: pass initial json data
   - `addBarChartValue`: add value to local data
   - `removeBarChartValue`
+  
+### AngularJS repo
+https://github.com/phronesys/angularjs-gulp-base
 
 ## To run this project
 To compile use Node v16 or newer
