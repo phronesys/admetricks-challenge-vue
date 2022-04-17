@@ -23,7 +23,7 @@ const removeValue = () => {
       </div>
     </div>
     <am-bar-chart
-      url="data"
+      url="services/data"
       :margin="64"
       :svg-height="400"
       :svg-width="900"

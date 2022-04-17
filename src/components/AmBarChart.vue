@@ -20,7 +20,7 @@ const svgRef = ref(null);
 const dataLocal = ref<AdmetricksData[]>();
 
 /* get data from json */
-const dataJson = import(`../services/${url}.json`)
+const dataJson = import(`../${url}.json`)
   .then((data) => {
     return data.data;
   })
