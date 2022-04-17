@@ -1,24 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import jsonData from "../services/data.json";
-import AmBarChart, { AdmetricksData } from "../components/AmBarChart.vue";
+import AmBarChart from "../components/AmBarChart.vue";
 import AmButton from "../components/AmButton.vue";
-import faker from '@faker-js/faker'
-
-const brandData: any = ref(jsonData);
 
 const addValue = () => {
-  const name = faker.company.companyName();
-  const randomValue: AdmetricksData = {
-    name,
-    reach: Math.random(),
-    frequency: Number((Math.random() * 10).toFixed(2)),
-  };
-  brandData.value.data.push(randomValue);
+  const customEvent = new CustomEvent('addBarChartValue');
+  document.dispatchEvent(customEvent);
 };
 
 const removeValue = () => {
-  brandData.value.data.pop();
+  const customEvent = new CustomEvent('removeBarChartValue');
+  document.dispatchEvent(customEvent);
 };
 </script>
 
@@ -32,11 +23,10 @@ const removeValue = () => {
       </div>
     </div>
     <am-bar-chart
-      :data="brandData.data"
+      url="data"
       :margin="64"
       :svg-height="400"
       :svg-width="900"
-      :colors="['#f4bd6a', '#5ec0bc']"
     ></am-bar-chart>
     <div class="footer">
       <div class="reach">Alcance</div>
