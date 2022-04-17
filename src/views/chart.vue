@@ -1,18 +1,3 @@
-<script setup lang="ts">
-import AmBarChart from "../components/AmBarChart.vue";
-import AmButton from "../components/AmButton.vue";
-
-const addValue = () => {
-  const customEvent = new CustomEvent('addBarChartValue');
-  document.dispatchEvent(customEvent);
-};
-
-const removeValue = () => {
-  const customEvent = new CustomEvent('removeBarChartValue');
-  document.dispatchEvent(customEvent);
-};
-</script>
-
 <template>
   <main class="chart">
     <div class="title">
@@ -22,12 +7,7 @@ const removeValue = () => {
         <img src="../assets/icons/icon-menu.svg" alt="" />
       </div>
     </div>
-    <am-bar-chart
-      url="services/data"
-      :margin="64"
-      :svg-height="400"
-      :svg-width="900"
-    ></am-bar-chart>
+    <am-bar-chart margin="64" svg-height="400" svg-width="900"></am-bar-chart>
     <div class="footer">
       <div class="reach">Alcance</div>
       <div class="frequency">Frecuencia</div>
@@ -38,6 +18,35 @@ const removeValue = () => {
     <am-button type="tertiary" @click="removeValue"> Remove value </am-button>
   </div>
 </template>
+
+<script setup lang="ts">
+import { onMounted } from "vue";
+import AmBarChart from "../components/AmBarChart.vue";
+import AmButton from "../components/AmButton.vue";
+import jsonData from "../services/data.json";
+
+const addValue = () => {
+  const customEvent = new CustomEvent("addBarChartValue");
+  document.dispatchEvent(customEvent);
+};
+
+const removeValue = () => {
+  const customEvent = new CustomEvent("removeBarChartValue");
+  document.dispatchEvent(customEvent);
+};
+
+const sendInitialJsonData = () => {
+  const data: any = jsonData.data;
+  const customEvent = new CustomEvent("initialJsonData", {
+    detail: data
+  })
+  document.dispatchEvent(customEvent);
+}
+
+onMounted(() => {
+  sendInitialJsonData();
+});
+</script>
 
 <style lang="postcss">
 main.chart {

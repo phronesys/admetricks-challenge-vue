@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, watchEffect } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import * as d3 from "d3";
 import faker from "@faker-js/faker";
 
@@ -12,19 +12,11 @@ export interface Props {
   margin: number | string | any;
   svgWidth: number | string | any;
   svgHeight: number | string | any;
-  url: string;
 }
 
-const { margin, svgHeight, svgWidth, url } = defineProps<Props>();
+const { margin, svgHeight, svgWidth } = defineProps<Props>();
 const svgRef = ref(null);
 const dataLocal = ref<AdmetricksData[]>();
-
-/* get data from json */
-const dataJson = import(`../${url}.json`)
-  .then((data) => {
-    return data.data;
-  })
-  .catch((error) => console.error(error));
 
 /* render d3 chart */
 const renderChart = (data: AdmetricksData[]) => {
@@ -144,7 +136,7 @@ const renderChart = (data: AdmetricksData[]) => {
     .text((data: AdmetricksData) => data.frequency);
 };
 
-/* add/remove functions */
+/* add random data */
 const addValue = () => {
   if (dataLocal.value === undefined)
     return new Error("Can't add value to undefined");
@@ -155,10 +147,12 @@ const addValue = () => {
     reach: Math.random(),
     frequency: Number((Math.random() * 10).toFixed(2)),
   };
+
   // update dataLocal and re-render
   dataLocal.value.push(randomValue);
   renderChart(dataLocal.value);
 };
+/* remove last data inserted */
 const removeValue = () => {
   if (dataLocal.value === undefined)
     return new Error("Can't remove value from undefined");
@@ -168,26 +162,32 @@ const removeValue = () => {
   renderChart(dataLocal.value);
 };
 
+/* get initial data to populate dataLocal */
+const initializeData = ({ detail }: any) => {
+  dataLocal.value = detail;
+  if (dataLocal.value !== undefined) renderChart(dataLocal.value);
+};
+
 /* lifecycle */
 onMounted(() => {
-  dataJson.then((data) => {
-    dataLocal.value = data;
-    renderChart(data);
-  });
+  /* listen to custom event to get initial data */
+  document.addEventListener("initialJsonData", initializeData);
 
-  /* listen to custom events to know when to trigger add() or remove() */
-  document.addEventListener('addBarChartValue', addValue);
-  document.addEventListener('removeBarChartValue', removeValue);
+  /* listen to custom events to know when to add or remove values */
+  document.addEventListener("addBarChartValue", addValue);
+  document.addEventListener("removeBarChartValue", removeValue);
 });
 
 onUnmounted(() => {
-  document.removeEventListener('addBarChartValue', addValue);
-  document.removeEventListener('removeBarChartValue', removeValue);
-})
+  document.removeEventListener("addBarChartValue", addValue);
+  document.removeEventListener("removeBarChartValue", removeValue);
+});
 </script>
 
 <template>
-  <div ref="svgRef" id="chart-view"></div>
+  <div ref="svgRef" id="chart-view">
+    <div class="p-8" v-if="!dataLocal">There is no data passed</div>
+  </div>
 </template>
 
 <style>
