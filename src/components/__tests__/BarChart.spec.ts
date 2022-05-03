@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/vue";
+import { render, RenderResult, screen } from "@testing-library/vue";
 import { describe, it, expect } from "vitest";
 import AmBarChart, { AdmetricksData } from "../AmBarChart.vue";
 
@@ -18,10 +18,16 @@ describe(`BarChart`, async () => {
     // { name: "owo", reach: 0.5, frequency: 6 },
     // { name: "owo", reach: 0.5, frequency: 6 },
   ];
+  let renderer: RenderResult;
+  beforeEach(() => {
+    renderer = render(AmBarChart, { props })
+  })
+  beforeAll(() => {
+    renderer?.unmount();
+  })
 
   it(`should render a div element where chart-view
   will be appended`, async () => {
-    render(AmBarChart, { props });
     const chartView = document.querySelector("#chart-view");
 
     expect(chartView).toBeTruthy();
@@ -29,7 +35,6 @@ describe(`BarChart`, async () => {
   });
 
   it(`should render a placeholder text inside`, async () => {
-    render(AmBarChart, { props });
     const placeholderText = "There is no data passed";
     const chartView = document.querySelector("#chart-view");
 
@@ -38,7 +43,6 @@ describe(`BarChart`, async () => {
 
   it(`should render an svg after 'initialJsonData' CustomEvent
   is dispatched`, async () => {
-    render(AmBarChart, { props });
     const chartView = document.querySelector("#chart-view");
 
     expect(chartView?.innerHTML).not.toContain("svg");
@@ -51,21 +55,19 @@ describe(`BarChart`, async () => {
   });
 
   it(`should have n° rect elements as data.length`, async () => {
-    render(AmBarChart, { props });
     const chartView = document.querySelector("#chart-view");
     document.dispatchEvent(
       new CustomEvent("initialJsonData", {
         detail: data,
       })
     );
-
     const allRects = chartView?.querySelectorAll("rect");
+
     expect(allRects?.length).toEqual(data.length);
   });
 
   it(`should add a rect element if we dispatch 'addBarChartValue' 
   CustomEvent with an AdmetricksData type object in detail`, async () => {
-    render(AmBarChart, { props });
     const chartView = document.querySelector("#chart-view");
     document.dispatchEvent(
       new CustomEvent("initialJsonData", {
@@ -93,7 +95,6 @@ describe(`BarChart`, async () => {
 
   it(`should remove a rect element if we dispatch 
   'removeBarChartValue'`, async () => {
-    render(AmBarChart, { props });
     const chartView = document.querySelector("#chart-view");
     document.dispatchEvent(
       new CustomEvent("initialJsonData", {
